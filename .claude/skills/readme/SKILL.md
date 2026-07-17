@@ -1,39 +1,37 @@
 ---
 name: readme
-description: Use whenever meaningful changes land in this project (new dependencies, new files/modules, changed setup steps, new features) to write or update README.md so it accurately documents the project like a senior engineer's onboarding doc. Trigger on requests like "update the readme", "document this", "write a readme", or proactively right before a commit that changes project structure, dependencies, or usage.
+description: Use whenever the user asks to commit and push in this project. Before staging, read the project's actual files (dependencies, entry points, notebooks/scripts) and rewrite README.md to fully document the current state of the project, then proceed with commit and push.
 ---
 
 # README maintenance
 
-Keep `README.md` at the project root accurate, current, and written the way a
-senior engineer would document a real project for a new teammate — clear,
-concrete, no fluff, no invented features.
+Before every commit-and-push, regenerate `README.md` from scratch by reading
+the project's current files, so it always fully documents the project as it
+stands right now — not as a log of what changed.
 
 ## When to act
 
-- User explicitly asks for a README to be written or updated.
-- You are about to commit changes that alter: dependencies (`pyproject.toml`,
-  `requirements.txt`, lockfiles), project structure (new top-level
-  files/folders), setup/run steps, environment variables, or the project's
-  actual functionality.
-- Do NOT rewrite the README for trivial changes (typo fixes, comment edits,
-  formatting) — only when something a reader relies on actually changed.
+Any time the user asks to commit and push (or just push, or just commit),
+in this project. Run this before staging/committing.
 
 ## How to write it
 
-1. **Survey before writing.** Read the actual dependency files, entry points,
-   and any notebooks/scripts to determine what the project really does and
-   how it's actually run. Never describe functionality that isn't in the
-   code yet.
-2. **Update in place, don't start over.** If `README.md` already has
-   sections, preserve accurate ones and only revise what changed — diff
-   mentally against current project state rather than regenerating from
-   scratch each time.
+1. **Read the real files first.** Open the dependency files
+   (`pyproject.toml`, `requirements.txt`, lockfiles), entry points, and any
+   notebooks/scripts to determine what the project actually does and how
+   it's actually run right now. Never describe functionality that isn't in
+   the code.
+2. **Write the full current picture, not a diff.** Treat every regeneration
+   as writing the README for the first time: describe the project as it is
+   today, in full. Do not phrase anything in terms of before/after,
+   previously/now, added/removed, or reference the history of how it got
+   this way — a reader should never be able to tell the README was edited
+   before.
 3. **Structure** (skip sections that don't apply, don't pad):
    - Title + one-sentence description of what the project is.
    - Features / what it does.
-   - Tech stack (languages, frameworks, key libraries — pull from the
-     dependency file, not guesswork).
+   - Tech stack (languages, frameworks, key libraries — pulled from the
+     dependency files, not guesswork).
    - Prerequisites (Python version from `.python-version` or
      `requires-python`, package manager in use — e.g. `uv` if a `uv.lock`
      is present).
@@ -45,13 +43,13 @@ concrete, no fluff, no invented features.
    - Usage — a real, runnable example based on actual entry points/cells.
    - Project structure — a short annotated file tree of what matters.
 4. **Never leak secrets.** If a `.env` exists, only ever reference variable
-   *names*, never values, when documenting it.
+   *names*, never values.
 5. **Be honest about gaps.** If the project is a work-in-progress notebook
-   rather than a packaged app, say so — don't inflate it with sections like
+   rather than a packaged app, say so plainly — don't add sections like
    "Contributing" or "License" that don't apply yet.
 
 ## After writing
 
-Mention in your response what changed in the README and why (e.g. "added
-the Groq setup section since we just wired up the LLM"), so the user can
-spot-check accuracy rather than trusting it blindly.
+Stage the updated `README.md` along with the other changes being committed,
+then proceed with the commit and push as requested. Don't narrate what
+changed in the README itself.
