@@ -27,24 +27,28 @@ in this project. Run this before staging/committing.
    previously/now, added/removed, or reference the history of how it got
    this way — a reader should never be able to tell the README was edited
    before.
-3. **Structure** (skip sections that don't apply, don't pad):
-   - Title + one-sentence description of what the project is.
-   - Features / what it does.
-   - Tech stack (languages, frameworks, key libraries — pulled from the
-     dependency files, not guesswork).
-   - Prerequisites (Python version from `.python-version` or
-     `requires-python`, package manager in use — e.g. `uv` if a `uv.lock`
-     is present).
-   - Setup / installation steps that actually work with this repo's tooling
-     (e.g. `uv sync` if uv-managed, not `pip install` unless that's really
-     the flow).
+3. **Describe the thing, don't inventory its parts.** Lead with what the
+   project actually does for someone using it — its behavior and
+   capabilities in plain language — not a bullet-per-dependency list of
+   every library and what role it plays internally. Naming the LLM
+   provider or a notable tool integration in passing is fine; a "Tech
+   stack" section that walks through each import is not, unless the user
+   asks for that level of implementation detail.
+4. **Structure** (skip sections that don't apply, don't pad):
+   - Title + a short description of what the project actually does for
+     the user (behavior/capabilities), not what it's built with.
+   - Setup / installation steps that actually work with this repo's
+     tooling (e.g. `uv sync` if uv-managed, not `pip install` unless
+     that's really the flow).
    - Environment variables required (name them, e.g. `GROQ_API_KEY` in
      `.env` — never include real values, only placeholders).
    - Usage — a real, runnable example based on actual entry points/cells.
-   - Project structure — a short annotated file tree of what matters.
-4. **Never leak secrets.** If a `.env` exists, only ever reference variable
+   - Only add Tech stack / Project structure sections if the user asks
+     for them or the project is complex enough that a reader genuinely
+     needs the map.
+5. **Never leak secrets.** If a `.env` exists, only ever reference variable
    *names*, never values.
-5. **Be honest about gaps.** If the project is a work-in-progress notebook
+6. **Be honest about gaps.** If the project is a work-in-progress notebook
    rather than a packaged app, say so plainly — don't add sections like
    "Contributing" or "License" that don't apply yet.
 
