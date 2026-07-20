@@ -3,9 +3,8 @@ from langchain.chat_models import init_chat_model
 from chatbot.client import get_tools
 
 llm = init_chat_model(
-    model="llama-3.3-70b-versatile",
+    model="openai/gpt-oss-120b",
     model_provider="groq",
-    
 )
 
 

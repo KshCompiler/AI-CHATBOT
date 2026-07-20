@@ -1,8 +1,11 @@
 import asyncio
+import sys
 
 from dotenv import load_dotenv
 
 load_dotenv()
+
+sys.stdout.reconfigure(encoding="utf-8")
 
 from chatbot import build_graph
 
