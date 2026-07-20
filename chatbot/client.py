@@ -5,6 +5,7 @@ from pathlib import Path
 from langchain_mcp_adapters.client import MultiServerMCPClient
 
 SERVER_SCRIPT = Path(__file__).parent / "servers.py"
+PROJECT_ROOT = Path(__file__).parent.parent
 
 client = MultiServerMCPClient(
     {
@@ -12,7 +13,16 @@ client = MultiServerMCPClient(
             "command": sys.executable,
             "args": [str(SERVER_SCRIPT)],
             "transport": "stdio",
-        }
+        },
+        "filesystem": {
+            "command": "npx",
+            "args": [
+                "-y",
+                "@modelcontextprotocol/server-filesystem",
+                str(PROJECT_ROOT),
+            ],
+            "transport": "stdio",
+        },
     }
 )
 
