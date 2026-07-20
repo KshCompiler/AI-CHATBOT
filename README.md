@@ -53,6 +53,16 @@ model talks to local MCP servers rather than calling any APIs directly:
   model can list, read, write, move, and search files within the project,
   but nothing outside it.
 
+  To allow a different directory, change `PROJECT_ROOT` in
+  `chatbot/client.py`:
+
+  ```python
+  PROJECT_ROOT = Path(__file__).parent.parent  # default: this project's folder
+
+  # example: allow a specific folder instead
+  PROJECT_ROOT = Path(r"C:\Users\kshit\OneDrive\Desktop\some-other-folder")
+  ```
+
 ## Project structure
 
 ```
