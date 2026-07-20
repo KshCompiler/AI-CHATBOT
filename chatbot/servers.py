@@ -14,7 +14,6 @@ def searchEngine(query:str)->str:
     result = search.invoke(query)
     
     return result["answer"]
-    
-searchEngine("todays news")
+
 if __name__ == "__main__":
     mcp.run()
