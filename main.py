@@ -1,8 +1,8 @@
 from dotenv import load_dotenv
 
-from chatbot import build_graph
-
 load_dotenv()
+
+from chatbot import build_graph
 
 
 def main():
