@@ -4,3 +4,5 @@ langsmith
 langchain-groq
 python-dotenv
 langchain-tavily
+mcp[cli]
+langchain-mcp-adapters

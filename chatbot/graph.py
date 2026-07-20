@@ -1,17 +1,17 @@
 from langgraph.checkpoint.memory import InMemorySaver
-from langgraph.graph import END, START, StateGraph
+from langgraph.graph import START, StateGraph
 from langgraph.prebuilt import ToolNode, tools_condition
 
-from chatbot.llm import llm_with_tools
+from chatbot.llm import get_llm_with_tools
 from chatbot.state import State
-from chatbot.tools import tools
 
 
-def chatbot_node(state: State):
-    return {"messages": [llm_with_tools.invoke(state.messages)]}
+async def build_graph():
+    llm_with_tools, tools = await get_llm_with_tools()
 
+    def chatbot_node(state: State):
+        return {"messages": [llm_with_tools.invoke(state.messages)]}
 
-def build_graph():
     graph_builder = StateGraph(State)
 
     graph_builder.add_node("chatbot", chatbot_node)

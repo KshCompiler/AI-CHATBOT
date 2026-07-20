@@ -1,3 +1,5 @@
+import asyncio
+
 from dotenv import load_dotenv
 
 load_dotenv()
@@ -5,8 +7,8 @@ load_dotenv()
 from chatbot import build_graph
 
 
-def main():
-    graph = build_graph()
+async def main():
+    graph = await build_graph()
     config = {"configurable": {"thread_id": "1"}}
 
     print("Chatbot ready. Type 'exit' to quit.")
@@ -15,9 +17,9 @@ def main():
         if user_input.lower() in ("exit", "quit"):
             break
 
-        response = graph.invoke({"messages": [{"role": "user", "content": user_input}]}, config)
+        response = await graph.ainvoke({"messages": [{"role": "user", "content": user_input}]}, config)
         print(f"Bot: {response['messages'][-1].content}")
 
 
 if __name__ == "__main__":
-    main()
+    asyncio.run(main())

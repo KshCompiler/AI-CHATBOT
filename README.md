@@ -37,13 +37,18 @@ uv run main.py
 Type your messages at the `You:` prompt; type `exit` or `quit` to end the
 session.
 
+The web search tool runs behind the Model Context Protocol (MCP): the chat
+model talks to a local MCP server that wraps Tavily search, rather than
+calling Tavily directly.
+
 ## Project structure
 
 ```
 main.py            # entry point — runs the terminal chat loop
 chatbot/
   state.py          # conversation state schema
-  tools.py          # web search tool (Tavily)
-  llm.py            # chat model setup, bound to tools
+  servers.py        # MCP server exposing the Tavily web search tool
+  client.py         # MCP client that connects to servers.py and loads its tools
+  llm.py            # chat model setup, bound to the MCP-provided tools
   graph.py          # builds the LangGraph chatbot graph
 ```
